@@ -32,7 +32,7 @@ public class InputTypeSorterTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1.2.3", "//\\n1;2;3", "//:\\n1:2:3", "//,\\n1,2,3", "//;1;2;3", ";\\n1;2;3", ":",
-            "1,,2,3", "1:2::3", "1,2:3"})
+            "1,,2,3", "1:2::3", "1,2:3", "//;[\\n1;2;3"})
     void 사용자가_잘못된_형식으로_입력한_경우_예외(String input) {
         assertThatThrownBy(() -> InputTypeSorter.SORTER.sort(input))
                 .isInstanceOf(IllegalArgumentException.class)
