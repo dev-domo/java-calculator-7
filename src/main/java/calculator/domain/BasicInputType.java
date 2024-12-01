@@ -10,8 +10,12 @@ import java.util.stream.Collectors;
 public class BasicInputType implements InputType {
     private final String input;
 
-    public BasicInputType(final String input) {
+    private BasicInputType(final String input) {
         this.input = input;
+    }
+
+    public static BasicInputType of(final String input) {
+        return new BasicInputType(input);
     }
 
     @Override

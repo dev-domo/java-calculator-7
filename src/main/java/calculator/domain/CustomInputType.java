@@ -16,9 +16,13 @@ public class CustomInputType implements InputType {
     private final String input;
     private final Matcher matcher;
 
-    public CustomInputType(final String input) {
+    private CustomInputType(final String input) {
         this.input = input;
         this.matcher = CUSTOM_PATTERN.valueOf().matcher(input);
+    }
+
+    public static InputType of(final String input) {
+        return new CustomInputType(input);
     }
 
     @Override

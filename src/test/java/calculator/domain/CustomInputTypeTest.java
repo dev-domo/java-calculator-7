@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 public class CustomInputTypeTest {
     @Test
     void 커스텀_구분자_기준으로_나누어_숫자_리스트를_반환한다() {
-        CustomInputType customInputType = new CustomInputType("//;\\n1;2;3");
-
-        assertThat(customInputType.extractNumbers()).containsExactly(1, 2, 3);
+        assertThat(CustomInputType.of("//;\\n1;2;3").extractNumbers())
+                .containsExactly(1, 2, 3);
     }
 }

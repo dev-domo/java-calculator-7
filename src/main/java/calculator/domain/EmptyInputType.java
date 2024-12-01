@@ -5,8 +5,12 @@ import java.util.List;
 public class EmptyInputType implements InputType {
     private final String input;
 
-    public EmptyInputType(String input) {
+    private EmptyInputType(final String input) {
         this.input = input;
+    }
+
+    public static InputType of(final String input) {
+        return new EmptyInputType(input);
     }
 
     @Override

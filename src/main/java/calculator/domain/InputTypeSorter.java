@@ -12,13 +12,13 @@ public enum InputTypeSorter {
 
     public InputType sort(String input) {
         if (isEmpty(input)) {
-            return new EmptyInputType(input);
+            return EmptyInputType.of(input);
         }
         if (isContainsCustomDelimiter(input)) {
-            return new CustomInputType(input);
+            return CustomInputType.of(input);
         }
         if (isContainsBasicDelimiter(input)) {
-            return new BasicInputType(input);
+            return BasicInputType.of(input);
         }
         throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT.valueOf());
     }
