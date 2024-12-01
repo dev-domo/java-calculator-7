@@ -8,7 +8,13 @@
 
 - [X] 쉼표나 콜론을 구분자로 가지는 문자열은 BasicInputType으로 분리한다.
 - [X] //와 \n 사이에 커스텀 구분자를 지정하는 문자열은 CustomInputType으로 분리한다.
-- [X] null이나 빈 문자열은 0으로 계산한다.
+- [X] null이나 빈 문자열은 EmptyInputType으로 분리한다.
+
+## 계산
+
+- [X] EmptyInputType은 0만 담긴 숫자 리스트를 반환한다.
+- [ ] BasicInputType은 콤마 혹은 콜론 기준으로 나누어 숫자 리스트를 반환한다.
+- [ ] CustomInputType은 커스텀 구분자 기준으로 나누어 숫자 리스트를 반환한다.
 
 ### 예외
 

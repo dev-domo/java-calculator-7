@@ -11,6 +11,6 @@ public class EmptyInputType implements InputType {
 
     @Override
     public List<Integer> extractNumbers() {
-        return null;
+        return List.of(0);
     }
 }
