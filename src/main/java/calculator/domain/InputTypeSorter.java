@@ -1,8 +1,10 @@
 package calculator.domain;
 
-import static calculator.enums.Patterns.BASIC_PATTERN;
+import static calculator.enums.Patterns.BASIC_COLON_PATTERN;
+import static calculator.enums.Patterns.BASIC_COMMA_PATTERN;
 import static calculator.enums.Patterns.CUSTOM_PATTERN;
 
+import calculator.enums.ExceptionMessage;
 import java.util.regex.Matcher;
 
 public enum InputTypeSorter {
@@ -18,7 +20,7 @@ public enum InputTypeSorter {
         if (isContainsBasicDelimiter(input)) {
             return new BasicInputType(input);
         }
-        return null;
+        throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT.valueOf());
     }
 
     private boolean isEmpty(String input) {
@@ -26,15 +28,20 @@ public enum InputTypeSorter {
     }
 
     private boolean isContainsCustomDelimiter(String input) {
-        return getCustomMatcher(input).find();
+        Matcher matcher = getCustomMatcher(input);
+        return matcher.find() && !CUSTOM_PATTERN.containsBasicDelimiter(matcher);
     }
 
     private boolean isContainsBasicDelimiter(String input) {
-        return getBasicMatcher(input).find();
+        return getBasicColonMatcher(input).find() || getBasicCommaMatcher(input).find();
     }
 
-    private Matcher getBasicMatcher(String input) {
-        return BASIC_PATTERN.valueOf().matcher(input);
+    private Matcher getBasicCommaMatcher(String input) {
+        return BASIC_COMMA_PATTERN.valueOf().matcher(input);
+    }
+
+    private Matcher getBasicColonMatcher(String input) {
+        return BASIC_COLON_PATTERN.valueOf().matcher(input);
     }
 
     private static Matcher getCustomMatcher(String input) {

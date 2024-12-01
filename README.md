@@ -22,7 +22,7 @@
 
 ### 예외
 
-- [ ] 사용자가 잘못된 값을 입력하는 경우 IllegalArgumentException을 발생시키고 종료한다.
+- [X] 사용자가 잘못된 값을 입력하는 경우 IllegalArgumentException을 발생시키고 종료한다.
 
 ### 입력
 
