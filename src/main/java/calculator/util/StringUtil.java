@@ -1,11 +1,11 @@
 package calculator.util;
 
+import static calculator.enums.NumberCharacters.MAXIMUM_INTEGER_LETTER;
+import static calculator.enums.NumberCharacters.MINIMUM_INTEGER_LETTER;
+
 import calculator.enums.ExceptionMessage;
 
 public class StringUtil {
-    private static final Character MINIMUM_INTEGER_LETTER = '0';
-    private static final Character MAXIMUM_INTEGER_LETTER = '9';
-
     public static String[] splitText(String text, String delimiter) {
         return checkInvalidDelimiter(text.split(delimiter), text);
     }
@@ -19,7 +19,8 @@ public class StringUtil {
 
     private static boolean isNotSingleNumber(String originalText) {
         return originalText.chars()
-                .filter(letter -> letter < MINIMUM_INTEGER_LETTER || letter > MAXIMUM_INTEGER_LETTER)
+                .filter(letter -> letter < MINIMUM_INTEGER_LETTER.valueOf()
+                        || letter > MAXIMUM_INTEGER_LETTER.valueOf())
                 .findFirst()
                 .isPresent();
     }
