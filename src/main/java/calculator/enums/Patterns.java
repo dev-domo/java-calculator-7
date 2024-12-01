@@ -11,6 +11,8 @@ public enum Patterns {
     BASIC_COLON_PATTERN(Pattern.compile("^\\d+(:\\d+)*$")),
     BASIC_COMMA_PATTERN(Pattern.compile("^\\d+(,\\d+)*$"));
 
+    private static final int DELIMITER_PLACE = 1;
+
     private final Pattern pattern;
 
     Patterns(final Pattern pattern) {
@@ -21,8 +23,8 @@ public enum Patterns {
         return pattern;
     }
 
-    public boolean containsBasicDelimiter(Matcher matcher) {
-        String delimiter = matcher.group(1);
-        return delimiter.equals(COLON.valueOf()) || delimiter.equals(COMMA.valueOf());
+    public boolean containsNotBasicDelimiter(Matcher matcher) {
+        String delimiter = matcher.group(DELIMITER_PLACE);
+        return !delimiter.equals(COLON.valueOf()) && !delimiter.equals(COMMA.valueOf());
     }
 }

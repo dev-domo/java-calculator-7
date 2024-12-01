@@ -29,7 +29,7 @@ public enum InputTypeSorter {
 
     private boolean isContainsCustomDelimiter(String input) {
         Matcher matcher = getCustomMatcher(input);
-        return matcher.find() && !CUSTOM_PATTERN.containsBasicDelimiter(matcher);
+        return matcher.find() && CUSTOM_PATTERN.containsNotBasicDelimiter(matcher);
     }
 
     private boolean isContainsBasicDelimiter(String input) {
