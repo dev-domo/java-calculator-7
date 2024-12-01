@@ -32,7 +32,7 @@ public class MainController {
     }
 
     private void printAdditionResult(List<Integer> numbers) {
-        outputView.showResult(Calculator.CALCULATOR.calculate(numbers));
+        outputView.showResult(Calculator.CALCULATOR.addition(numbers));
     }
 
     private InputType sortInputType() {

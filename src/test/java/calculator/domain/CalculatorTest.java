@@ -8,6 +8,6 @@ import org.junit.jupiter.api.Test;
 public class CalculatorTest {
     @Test
     void 숫자_리스트_덧셈() {
-        assertThat(Calculator.CALCULATOR.calculate(List.of(1, 2, 3))).isEqualTo(6);
+        assertThat(Calculator.CALCULATOR.addition(List.of(1, 2, 3))).isEqualTo(6);
     }
 }
