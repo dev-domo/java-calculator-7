@@ -1,5 +1,6 @@
 package calculator.controller;
 
+import calculator.domain.Calculator;
 import calculator.domain.InputType;
 import calculator.domain.InputTypeSorter;
 import calculator.view.InputView;
@@ -18,8 +19,8 @@ public class MainController {
     public void start() {
         outputView.promptForInput();
         InputType inputType = InputTypeSorter.sort(inputView.inputStringToSolve());
-        //Calculator calculator = new Calculator();
+        Calculator calculator = new Calculator();
 
-        //outputView.showResult(calculator.calculate(inputType.extractNumbers()));
+        outputView.showResult(calculator.calculate(inputType.extractNumbers()));
     }
 }
