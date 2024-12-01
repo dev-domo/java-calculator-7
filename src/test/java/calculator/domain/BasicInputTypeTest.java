@@ -2,13 +2,15 @@ package calculator.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
-public class EmptyInputTypeTest {
-    @Test
-    void 빈_문자열인_경우_0만_담긴_숫자_리스트를_반환한다() {
-        EmptyInputType emptyInputType = new EmptyInputType(null);
-        
-        assertThat(emptyInputType.extractNumbers()).containsExactly(0);
+public class BasicInputTypeTest {
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3", "1:2:3"})
+    void 빈_문자열인_경우_0만_담긴_숫자_리스트를_반환한다(String input) {
+        BasicInputType basicInputType = new BasicInputType(input);
+
+        assertThat(basicInputType.extractNumbers()).containsExactly(1, 2, 3);
     }
 }
