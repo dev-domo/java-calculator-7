@@ -18,4 +18,9 @@ public class StringUtilTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INVALID_INPUT.valueOf());
     }
+
+    @Test
+    void 숫자로_바꿀_수_있는_단일_문자는_예외_처리_금지() {
+        assertThat(StringUtil.splitText("25", ":")).containsExactly("25");
+    }
 }
