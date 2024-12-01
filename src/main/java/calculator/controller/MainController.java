@@ -1,6 +1,9 @@
 package calculator.controller;
 
+import calculator.domain.BasicInputType;
 import calculator.domain.Calculator;
+import calculator.domain.CustomInputType;
+import calculator.domain.EmptyInputType;
 import calculator.domain.InputType;
 import calculator.domain.InputTypeSorter;
 import calculator.view.InputView;
@@ -19,23 +22,25 @@ public class MainController {
 
     public void start() {
         printPromptForInput();
-        InputType inputType = sortInputType();
-        printAdditionResult(createNumbers(inputType));
+        String input = inputView.inputStringToSolve();
+        printAdditionResult(createNumbers(sortInputType(input), input));
     }
 
     private void printPromptForInput() {
         outputView.promptForInput();
     }
 
-    private List<Integer> createNumbers(InputType inputType) {
-        return inputType.extractNumbers();
+    private List<Integer> createNumbers(InputType inputType, String input) {
+        return inputType.extractNumbers(input);
     }
 
     private void printAdditionResult(List<Integer> numbers) {
         outputView.showResult(Calculator.CALCULATOR.addition(numbers));
     }
 
-    private InputType sortInputType() {
-        return InputTypeSorter.SORTER.sort(inputView.inputStringToSolve());
+    private InputType sortInputType(String input) {
+        InputTypeSorter inputTypeSorter = new InputTypeSorter(
+                List.of(EmptyInputType.of(), BasicInputType.of(), CustomInputType.of()));
+        return inputTypeSorter.sort(input);
     }
 }

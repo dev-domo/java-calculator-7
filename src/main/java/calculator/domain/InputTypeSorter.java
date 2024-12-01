@@ -1,51 +1,19 @@
 package calculator.domain;
 
-import static calculator.enums.Patterns.BASIC_COLON_PATTERN;
-import static calculator.enums.Patterns.BASIC_COMMA_PATTERN;
-import static calculator.enums.Patterns.CUSTOM_PATTERN;
-
-import calculator.enums.BasicDelimiters;
 import calculator.enums.ExceptionMessage;
-import java.util.regex.Matcher;
+import java.util.List;
 
-public enum InputTypeSorter {
-    SORTER;
+public class InputTypeSorter {
+    private final List<InputType> inputTypes;
+
+    public InputTypeSorter(final List<InputType> inputTypes) {
+        this.inputTypes = inputTypes;
+    }
 
     public InputType sort(String input) {
-        if (isEmpty(input)) {
-            return EmptyInputType.of(input);
-        }
-        if (isContainsCustomDelimiter(input)) {
-            return CustomInputType.of(input);
-        }
-        if (isContainsBasicDelimiter(input)) {
-            return BasicInputType.of(input);
-        }
-        throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT.valueOf());
-    }
-
-    private boolean isEmpty(String input) {
-        return input == null || input.isBlank();
-    }
-
-    private boolean isContainsCustomDelimiter(String input) {
-        Matcher matcher = getCustomMatcher(input);
-        return matcher.find() && BasicDelimiters.notContainsInMatcher(matcher);
-    }
-
-    private boolean isContainsBasicDelimiter(String input) {
-        return getBasicColonMatcher(input).find() || getBasicCommaMatcher(input).find();
-    }
-
-    private Matcher getBasicCommaMatcher(String input) {
-        return BASIC_COMMA_PATTERN.valueOf().matcher(input);
-    }
-
-    private Matcher getBasicColonMatcher(String input) {
-        return BASIC_COLON_PATTERN.valueOf().matcher(input);
-    }
-
-    private static Matcher getCustomMatcher(String input) {
-        return CUSTOM_PATTERN.valueOf().matcher(input);
+        return inputTypes.stream()
+                .filter(inputType -> inputType.matches(input))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.INVALID_INPUT.valueOf()));
     }
 }
