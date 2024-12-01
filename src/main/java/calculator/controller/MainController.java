@@ -23,19 +23,19 @@ public class MainController {
         printAdditionResult(createNumbers(inputType));
     }
 
-    private void printAdditionResult(List<Integer> numbers) {
-        outputView.showResult(Calculator.CALCULATOR.calculate(numbers));
+    private void printPromptForInput() {
+        outputView.promptForInput();
     }
 
     private List<Integer> createNumbers(InputType inputType) {
         return inputType.extractNumbers();
     }
 
-    private InputType sortInputType() {
-        return InputTypeSorter.SORTER.sort(inputView.inputStringToSolve());
+    private void printAdditionResult(List<Integer> numbers) {
+        outputView.showResult(Calculator.CALCULATOR.calculate(numbers));
     }
 
-    private void printPromptForInput() {
-        outputView.promptForInput();
+    private InputType sortInputType() {
+        return InputTypeSorter.SORTER.sort(inputView.inputStringToSolve());
     }
 }
