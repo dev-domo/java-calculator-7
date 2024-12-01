@@ -18,4 +18,12 @@ public class IntegerUtilTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INVALID_INPUT.valueOf());
     }
+
+    @Test
+    void 문자를_숫자로_변환한_결과가_음수이면_예외() {
+        assertThatThrownBy((() -> IntegerUtil.parseText("-1")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.INVALID_INPUT.valueOf());
+
+    }
 }
