@@ -14,7 +14,7 @@
 
 - [X] EmptyInputType은 0만 담긴 숫자 리스트를 반환한다.
 - [X] BasicInputType은 콤마 혹은 콜론 기준으로 나누어 숫자 리스트를 반환한다.
-- [ ] CustomInputType은 커스텀 구분자 기준으로 나누어 숫자 리스트를 반환한다.
+- [X] CustomInputType은 커스텀 구분자 기준으로 나누어 숫자 리스트를 반환한다.
 
 ### 예외
 
