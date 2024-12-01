@@ -5,6 +5,7 @@ import calculator.domain.InputType;
 import calculator.domain.InputTypeSorter;
 import calculator.view.InputView;
 import calculator.view.OutputView;
+import java.util.List;
 
 public class MainController {
 
@@ -17,10 +18,24 @@ public class MainController {
     }
 
     public void start() {
-        outputView.promptForInput();
-        InputType inputType = InputTypeSorter.sort(inputView.inputStringToSolve());
-        Calculator calculator = new Calculator();
+        printPromptForInput();
+        InputType inputType = sortInputType();
+        printAdditionResult(createNumbers(inputType));
+    }
 
-        outputView.showResult(calculator.calculate(inputType.extractNumbers()));
+    private void printAdditionResult(List<Integer> numbers) {
+        outputView.showResult(Calculator.CALCULATOR.calculate(numbers));
+    }
+
+    private List<Integer> createNumbers(InputType inputType) {
+        return inputType.extractNumbers();
+    }
+
+    private InputType sortInputType() {
+        return InputTypeSorter.sort(inputView.inputStringToSolve());
+    }
+
+    private void printPromptForInput() {
+        outputView.promptForInput();
     }
 }
