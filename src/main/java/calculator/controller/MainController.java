@@ -32,7 +32,7 @@ public class MainController {
     }
 
     private InputType sortInputType() {
-        return InputTypeSorter.sort(inputView.inputStringToSolve());
+        return InputTypeSorter.SORTER.sort(inputView.inputStringToSolve());
     }
 
     private void printPromptForInput() {

@@ -5,12 +5,14 @@ import static calculator.enums.Patterns.CUSTOM_PATTERN;
 
 import java.util.regex.Matcher;
 
-public class InputTypeSorter {
-    public static InputType sort(String input) {
+public enum InputTypeSorter {
+    SORTER;
+
+    public InputType sort(String input) {
         if (input == null || input.isBlank()) {
             return new EmptyInputType(input);
         }
-        Matcher matcher = CUSTOM_PATTERN.valueOf().matcher(input);
+        Matcher matcher = getCustomMatcher(input);
         if (matcher.find()) {
             return new CustomInputType(input);
         }
@@ -19,5 +21,9 @@ public class InputTypeSorter {
             return new BasicInputType(input);
         }
         return null;
+    }
+
+    private static Matcher getCustomMatcher(String input) {
+        return CUSTOM_PATTERN.valueOf().matcher(input);
     }
 }
