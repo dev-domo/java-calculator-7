@@ -4,6 +4,7 @@ import static calculator.enums.Patterns.BASIC_COLON_PATTERN;
 import static calculator.enums.Patterns.BASIC_COMMA_PATTERN;
 import static calculator.enums.Patterns.CUSTOM_PATTERN;
 
+import calculator.enums.BasicDelimiters;
 import calculator.enums.ExceptionMessage;
 import java.util.regex.Matcher;
 
@@ -29,7 +30,7 @@ public enum InputTypeSorter {
 
     private boolean isContainsCustomDelimiter(String input) {
         Matcher matcher = getCustomMatcher(input);
-        return matcher.find() && CUSTOM_PATTERN.containsNotBasicDelimiter(matcher);
+        return matcher.find() && BasicDelimiters.notContainsInMatcher(matcher);
     }
 
     private boolean isContainsBasicDelimiter(String input) {
