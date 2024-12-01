@@ -9,18 +9,32 @@ public enum InputTypeSorter {
     SORTER;
 
     public InputType sort(String input) {
-        if (input == null || input.isBlank()) {
+        if (isEmpty(input)) {
             return new EmptyInputType(input);
         }
-        Matcher matcher = getCustomMatcher(input);
-        if (matcher.find()) {
+        if (isContainsCustomDelimiter(input)) {
             return new CustomInputType(input);
         }
-        matcher = BASIC_PATTERN.valueOf().matcher(input);
-        if (matcher.find()) {
+        if (isContainsBasicDelimiter(input)) {
             return new BasicInputType(input);
         }
         return null;
+    }
+
+    private boolean isEmpty(String input) {
+        return input == null || input.isBlank();
+    }
+
+    private boolean isContainsCustomDelimiter(String input) {
+        return getCustomMatcher(input).find();
+    }
+
+    private boolean isContainsBasicDelimiter(String input) {
+        return getBasicMatcher(input).find();
+    }
+
+    private Matcher getBasicMatcher(String input) {
+        return BASIC_PATTERN.valueOf().matcher(input);
     }
 
     private static Matcher getCustomMatcher(String input) {
